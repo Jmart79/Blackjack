@@ -41,6 +41,10 @@ namespace Blackjack.Models
             CardStack = ShuffleCards(GenerateCards());
         }
 
+        public List<Card> ViewCards()
+        {
+            return CardStack;
+        }
 
         private List<Card> ShuffleCards(List<Card> initialDeck)
         {
