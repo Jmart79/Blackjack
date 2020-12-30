@@ -21,11 +21,9 @@ namespace Blackjack.Models
 
         public Deck(List<Card> cardStack)
         {
-            if(cardStack.Count == 52)
-            {
                  this.CardStack = ShuffleCards(cardStack);
                 CurrentCard = DrawCard();
-            }
+           
         }
 
         public Card DrawCard()
