@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Blackjack.Models
 {
-    public class PointKeeper
+    public class HandTracker
     {
         public int Value { get; set; }
 
-        public PointKeeper(List<Card> playerCardStack)
+        public HandTracker(List<Card> playerCardStack)
         {
             Value = GatherValue(playerCardStack);
         }

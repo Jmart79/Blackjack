@@ -16,7 +16,6 @@ namespace Blackjack.Models
         {
             CardStack = ShuffleCards(GenerateCards());
             CurrentCard = DrawCard();
-
         }
 
         public Deck(List<Card> cardStack)

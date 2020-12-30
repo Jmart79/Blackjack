@@ -9,13 +9,13 @@ namespace Blackjack.Models
     {
         private Deck PlayerDeck { get; set; }
         private List<Card> PlayerCardStack { get; set; }
-        private PointKeeper pointTracker { get; set; }
+        public HandTracker handTracker { get; set; }
 
         public Player(Deck playerDeck)
         {
             this.PlayerDeck = playerDeck;
             this.PlayerCardStack = PlayerDeck.ViewCards();
-            this.pointTracker = new PointKeeper(PlayerCardStack);
+            this.handTracker = new HandTracker(PlayerCardStack);
         }
 
         public void AddCard(Card newCard)
@@ -24,13 +24,15 @@ namespace Blackjack.Models
             {
                 PlayerCardStack.Add(newCard);
                 PlayerDeck = new Deck(PlayerCardStack);
+
+                handTracker.UpdateValue(PlayerCardStack);
             }
         }
 
         public int GetStackValue()
         {
-            pointTracker.UpdateValue(PlayerCardStack);
-            return pointTracker.Value;
+            handTracker.UpdateValue(PlayerCardStack);
+            return handTracker.Value;
         }
 
     }
