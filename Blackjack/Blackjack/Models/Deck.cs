@@ -8,28 +8,76 @@ namespace Blackjack.Models
 {
     public class Deck
     {
-        private Card[] CardStack { get; set; }
+        private List<Card> CardStack { get; set; }
+        private List<Card> DrawnCards = new List<Card>();
+        private Card CurrentCard { get; set; }
         
         public Deck()
         {
             CardStack = ShuffleCards(GenerateCards());
+            CurrentCard = DrawCard();
 
         }
 
-        public Deck(Card[] cardStack)
+        public Deck(List<Card> cardStack)
         {
-            if(cardStack.Length == 52)
+            if(cardStack.Count == 52)
             {
-                 this.CardStack = cardStack;
+                 this.CardStack = ShuffleCards(cardStack);
+                CurrentCard = DrawCard();
             }
         }
 
-        private Card[] ShuffleCards(Card[] initialDeck)
+        public Card DrawCard()
         {
-            return null;
+            Card drawnCard = CardStack.First();
+
+            CardStack.Remove(drawnCard);
+
+            DrawnCards.Add(drawnCard);
+
+            return drawnCard;            
         }
 
-        private Card[] GenerateCards()
+
+        private List<Card> ShuffleCards(List<Card> initialDeck)
+        {
+            Random rand = new Random();
+            List<Card> shuffledDeckList = new List<Card>();
+            int deckLength = initialDeck.Count - 1;
+            int randomIndex = rand.Next(0, deckLength);
+
+            shuffledDeckList = Shuffle(initialDeck[randomIndex], randomIndex, shuffledDeckList, initialDeck.ToList());
+          
+
+            return shuffledDeckList;
+        }
+
+        //returns true when completed,
+        private List<Card> Shuffle(Card randomCard,int randomIndex,List<Card> shuffledList,List<Card> originalDeck)
+        {
+            Random rand = new Random();
+
+            bool isCardPresent = shuffledList.Find(card => card.CardImageName == randomCard.CardImageName) != null;
+            if (!isCardPresent)
+            {
+                //add card to list reshuffle
+                randomIndex = rand.Next(0, originalDeck.Count-1);
+                randomCard = originalDeck[randomIndex];
+                shuffledList = Shuffle(randomCard, randomIndex, shuffledList, originalDeck);
+            }
+            else
+            {
+                if(shuffledList.Count == 52)
+                {
+                    return shuffledList;
+                }
+            }
+
+                return originalDeck;
+        }
+
+        private List<Card> GenerateCards()
         {
             string[] fileEntries = Directory.GetFiles("~/Images/CardFronts");
             List<Card> generatedCardList = new List<Card>();
@@ -41,7 +89,7 @@ namespace Blackjack.Models
                 generatedCardList.Add(placeholderCard);
             }
 
-            return generatedCardList.ToArray();
+            return generatedCardList;
         }
     }
 }
