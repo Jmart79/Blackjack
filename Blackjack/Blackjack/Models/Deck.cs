@@ -22,8 +22,7 @@ namespace Blackjack.Models
         public Deck(List<Card> cardStack)
         {
                  this.CardStack = ShuffleCards(cardStack);
-                CurrentCard = DrawCard();
-           
+                CurrentCard = DrawCard();            
         }
 
         public Card DrawCard()
