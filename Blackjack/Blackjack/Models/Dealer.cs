@@ -7,5 +7,11 @@ namespace Blackjack.Models
 {
     public class Dealer
     {
+        private int NumberOfDecks { get; set; }
+        private List<Deck> DeckList { get; set; }
+
+        public Card DistributeCard() { return null; }
+
+
     }
 }

@@ -39,6 +39,11 @@ namespace Blackjack.Models
             return drawnCard;            
         }
 
+        public void Reset()
+        {
+            CardStack = ShuffleCards(GenerateCards());
+        }
+
 
         private List<Card> ShuffleCards(List<Card> initialDeck)
         {
@@ -68,7 +73,7 @@ namespace Blackjack.Models
             }
             else
             {
-                if(shuffledList.Count == 52)
+                if(shuffledList.Count == originalDeck.Count)
                 {
                     return shuffledList;
                 }
