@@ -15,8 +15,12 @@
         <div id="PlayerHand"></div>
     </div>
     <div id="PlayerActionsContainer">
-        <div id="HitBtnContainer"></div>
-        <div id="StandBtnContainer"></div>
+        <div id="HitBtnContainer">
+            <button class="PlayerActionButton" formmethod="post" asp-controller="Game" asp-action="PlayerHit">Hit</button>
+        </div>
+        <div id="StandBtnContainer">
+            <button class="PlayerActionButton" formmethod="post" asp-controller="Game" asp-action="PlayerStand">Stand</button>
+        </div>
         <div id="FoldBtnContainer"></div>
     </div>
 </div>

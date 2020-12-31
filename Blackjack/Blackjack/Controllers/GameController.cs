@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Blackjack.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,30 @@ namespace Blackjack.Controllers
 {
     public class GameController : Controller
     {
-        public IActionResult Index()
+        private Board gameBoard { get; set; }
+
+        [HttpPost]
+        public IActionResult InitiateGame([FromForm] int numberOfPlayers)
         {
-            return View();
+            gameBoard = new Board(numberOfPlayers);
+
+            return null;
         }
+
+        [HttpPost]
+        public IActionResult PlayerStand()
+        {
+            return null;
+        }
+
+        [HttpPost]
+        public IActionResult PlayerHit()
+        {
+            return null;
+        }
+
+
+
+
     }
 }
