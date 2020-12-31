@@ -2,3 +2,7 @@
 @model Blackjack.Pages.Home.HomePageModel
 @{
 }
+<form id="NumberOfPlayers " method="post" asp-controller="Game" asp-action="InitiateGame">
+    <input type="number" placeholder="Number of players."/>
+    <input type="submit"/>
+</form>

@@ -8,6 +8,7 @@ namespace Blackjack.Models
     public class HandTracker
     {
         public int Value { get; set; }
+        public bool IsWinningHand { get; set; }
 
         public HandTracker(List<Card> playerCardStack)
         {
